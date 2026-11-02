@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#a21caf">
+<title>Sarkar Varieties | Online Store</title>
+<style>
+:root{--pink:#a21caf;--pink2:#fdf2f8;--ink:#24152b;--muted:#756879;--line:#f0e5f1;--green:#128c55}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;color:var(--ink);background:#fff}
+header{background:linear-gradient(120deg,#86198f,#c0268d);color:#fff;padding:24px 5vw 28px}
+.top{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:18px;align-items:center}
+.brand{font-size:clamp(25px,4vw,38px);font-weight:850;letter-spacing:.3px}.sub{opacity:.9;margin-top:5px}
+.pill{background:#ffffff24;border:1px solid #ffffff55;border-radius:30px;padding:9px 14px;font-size:14px}
+.hero{max-width:1120px;margin:26px auto 0;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hero h1{font-size:clamp(25px,4vw,42px);line-height:1.2;margin:0 0 10px}.hero p{margin:0;opacity:.92}
+.hero-badge{font-size:56px;background:#ffffff20;border-radius:24px;padding:16px}
+main{max-width:1120px;margin:24px auto;padding:0 18px}
+.notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a4510;padding:12px 14px;border-radius:12px;font-size:14px;margin-bottom:18px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+input,select{font:inherit;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff}
+#search{flex:1;min-width:190px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 20px}
+.filters button{border:1px solid var(--line);background:white;border-radius:22px;padding:8px 13px;cursor:pointer;color:var(--ink)}
+.filters button.active{background:var(--pink);color:white;border-color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:15px;padding:13px;display:flex;flex-direction:column;min-height:205px;box-shadow:0 3px 14px #3b0a4510}
+.thumb{height:88px;border-radius:11px;background:linear-gradient(135deg,#fce7f3,#f3e8ff);display:grid;place-items:center;font-size:39px;margin-bottom:10px}
+.card h3{font-size:15px;line-height:1.35;margin:0 0 6px}.cat{font-size:12px;color:var(--muted)}
+.price{font-weight:750;color:var(--pink);font-size:14px;margin:8px 0 12px}
+.card button,.primary{border:0;background:var(--pink);color:white;border-radius:10px;padding:10px 12px;font-weight:700;cursor:pointer;margin-top:auto}
+.cartbox{position:sticky;bottom:10px;background:#fff;border:1px solid var(--line);box-shadow:0 5px 25px #2a123022;border-radius:16px;padding:13px;margin:22px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cartbox small{display:block;color:var(--muted)}
+footer{background:#251329;color:#fff;text-align:center;padding:25px 15px;margin-top:35px;font-size:14px}
+a{color:inherit}.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
+@media(max-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:580px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{padding:10px;min-height:200px}.thumb{height:75px}.top{align-items:flex-start;flex-direction:column}.hero-badge{font-size:40px}.cartbox{align-items:flex-start;flex-direction:column}.cartbox button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <div><div class="brand">SARKAR VARIETIES</div><div class="sub">রসুল্যাপুর বাজার · Cosmetics & Daily Care</div></div>
+  <div class="pill">📍 রসুল্যাপুর ও আশেপাশে ডেলিভারি</div>
+ </div>
+ <div class="hero">
+  <div><h1>আপনার পছন্দের প্রসাধনী,<br>এবার ঘরে বসেই অর্ডার করুন</h1><p>প্রোডাক্ট বেছে কার্টে যোগ করুন, WhatsApp-এ অর্ডার পাঠান।</p></div>
+  <div class="hero-badge">🛍️</div>
+ </div>
+</header>
+<main>
+ <div class="notice"><b>দ্রষ্টব্য:</b> এটি আপনার দোকানের প্রাথমিক নমুনা ক্যাটালগ। পণ্যের নামগুলি সাজানো হয়েছে; দাম ও স্টক দোকানের সঙ্গে যোগাযোগ করে নিশ্চিত করুন। অর্ডার পাঠানোর আগে ডেলিভারি এলাকা ও চার্জ নিশ্চিত করা হবে।</div>
+ <div class="toolbar"><input id="search" placeholder="প্রোডাক্ট খুঁজুন..." aria-label="প্রোডাক্ট খুঁজুন"><select id="sort"><option value="default">সাজানো: ডিফল্ট</option><option value="az">নাম A–Z</option></select></div>
+ <div class="filters" id="filters"></div>
+ <section class="grid" id="products"></section>
+ <div class="cartbox"><div><b>🛒 আপনার কার্ট: <span id="count">০</span>টি</b><small id="cartnames">এখনও কোনও পণ্য যোগ করা হয়নি</small></div><button class="primary" onclick="checkout()">WhatsApp-এ অর্ডার করুন</button></div>
+</main>
+<footer><b>SARKAR VARIETIES</b><br>রসুল্যাপুর বাজার<br>WhatsApp / ফোন: 7076676120<br><small>অর্ডার ও পণ্যের দাম নিশ্চিত করতে যোগাযোগ করুন।</small></footer>
+<script>
+const phone="917076676120";
+const raw=[
+["Nivea Soft Cream","Face Cream"],["Pond's Light Moisturiser","Face Cream"],["Pond's Cold Cream","Face Cream"],["Himalaya Nourishing Skin Cream","Face Cream"],["Lakme Peach Milk Moisturiser","Face Cream"],["Garnier Bright Complete Cream","Face Cream"],["Fair & Lovely / Glow Cream","Face Cream"],["Boroplus Antiseptic Cream","Face Cream"],["Vicco Turmeric Cream","Face Cream"],["Joy Honey & Almonds Cream","Face Cream"],
+["Vaseline Intensive Care Lotion","Body Lotion"],["Nivea Body Lotion","Body Lotion"],["Himalaya Body Lotion","Body Lotion"],["Parachute Body Lotion","Body Lotion"],["Pond's Body Lotion","Body Lotion"],["Joy Skin Fruits Lotion","Body Lotion"],["Vaseline Aloe Fresh Lotion","Body Lotion"],["Vaseline Deep Moisture Lotion","Body Lotion"],["Dermicool Body Lotion","Body Lotion"],["Sontex Body Lotion","Body Lotion"],
+["Vaseline Petroleum Jelly","Petroleum Jelly"],["Boroplus Petroleum Jelly","Petroleum Jelly"],["Pond's Petroleum Jelly","Petroleum Jelly"],["Himalaya Baby Petroleum Jelly","Petroleum Jelly"],["Glycerine","Skin Care"],["IP Glycerine","Skin Care"],["Rose Water","Skin Care"],["Aloe Vera Gel","Skin Care"],["Multani Mitti","Skin Care"],["Face Pack","Skin Care"],
+["Clinic Plus Shampoo","Hair Care"],["Dove Shampoo","Hair Care"],["Sunsilk Shampoo","Hair Care"],["Head & Shoulders Shampoo","Hair Care"],["Pantene Shampoo","Hair Care"],["Tresemme Shampoo","Hair Care"],["Clinic Plus Conditioner","Hair Care"],["Dove Conditioner","Hair Care"],["Hair Serum","Hair Care"],["Hair Mask","Hair Care"],
+["Parachute Coconut Hair Oil","Hair Oil"],["Bajaj Almond Drops","Hair Oil"],["Dabur Amla Hair Oil","Hair Oil"],["Navratna Oil","Hair Oil"],["Indulekha Hair Oil","Hair Oil"],["Keo Karpin Hair Oil","Hair Oil"],["Onion Hair Oil","Hair Oil"],["Almond Hair Oil","Hair Oil"],["Coconut Hair Oil","Hair Oil"],["Hair Fall Control Oil","Hair Oil"],
+["Lux Soap","Bath & Body"],["Lifebuoy Soap","Bath & Body"],["Dove Soap","Bath & Body"],["Dettol Soap","Bath & Body"],["Santoor Soap","Bath & Body"],["Mysore Sandal Soap","Bath & Body"],["Medimix Soap","Bath & Body"],["Pears Soap","Bath & Body"],["Fiama Soap","Bath & Body"],["Cinthol Soap","Bath & Body"],
+["Santoor Hand Wash","Bath & Body"],["Dettol Hand Wash","Bath & Body"],["Lifebuoy Hand Wash","Bath & Body"],["Body Wash","Bath & Body"],["Shower Gel","Bath & Body"],["Hand Cream","Bath & Body"],["Foot Cream","Bath & Body"],["Talcum Powder","Bath & Body"],["Prickly Heat Powder","Bath & Body"],["Deodorant","Bath & Body"],
+["Lakme Kajal","Makeup"],["Elle 18 Kajal","Makeup"],["Maybelline Kajal","Makeup"],["Eyeliner","Makeup"],["Mascara","Makeup"],["Lipstick","Makeup"],["Lip Balm","Makeup"],["Nail Polish","Makeup"],["Nail Polish Remover","Makeup"],["Compact Powder","Makeup"],
+["Foundation","Makeup"],["BB Cream","Makeup"],["Primer","Makeup"],["Makeup Remover","Makeup"],["Sindoor","Makeup"],["Bindi Packet","Makeup"],["Face Powder","Makeup"],["Makeup Brush","Makeup"],["Beauty Blender","Makeup"],["Eyebrow Pencil","Makeup"],
+["Comb","Accessories"],["Hair Band","Accessories"],["Hair Clip","Accessories"],["Rubber Band","Accessories"],["Bobby Pins","Accessories"],["Cotton Buds","Accessories"],["Cotton Pads","Accessories"],["Sanitary Pads","Personal Care"],["Wet Wipes","Personal Care"],["Toothpaste","Personal Care"]
+];
+const cats=["সব","Face Cream","Body Lotion","Petroleum Jelly","Skin Care","Hair Care","Hair Oil","Bath & Body","Makeup","Accessories","Personal Care"];
+let selected="সব",cart={};
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+function renderFilters(){document.getElementById("filters").innerHTML=cats.map(c=>`<button class="${selected===c?'active':''}" onclick="selected='${c}';renderFilters();renderProducts()">${c==="সব"?"সব পণ্য":c}</button>`).join("")}
+function renderProducts(){
+ let q=document.getElementById("search").value.toLowerCase();
+ let list=raw.map((x,i)=>({name:x[0],cat:x[1],id:i})).filter(x=>(selected==="সব"||x.cat===selected)&&x.name.toLowerCase().includes(q));
+ if(document.getElementById("sort").value==="az")list.sort((a,b)=>a.name.localeCompare(b.name));
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`<article class="card"><div class="thumb">🧴</div><div class="cat">${p.cat}</div><h3>${p.name}</h3><div class="price">দাম জানতে যোগাযোগ করুন</div><button onclick="add(${p.id})">কার্টে যোগ করুন</button></article>`).join(""):'<div class="empty">কোনও প্রোডাক্ট পাওয়া যায়নি।</div>';
+}
+function add(id){cart[id]=(cart[id]||0)+1;updateCart()}
+function updateCart(){let ids=Object.keys(cart);let count=ids.reduce((s,id)=>s+cart[id],0);document.getElementById("count").textContent=bn(count);document.getElementById("cartnames").textContent=ids.length?ids.map(id=>raw[id][0]+" × "+bn(cart[id])).join(" · "):"এখনও কোনও পণ্য যোগ করা হয়নি"}
+function checkout(){
+ let ids=Object.keys(cart);if(!ids.length){alert("আগে কার্টে পণ্য যোগ করুন।");return}
+ let msg="নমস্কার, Sarkar Varieties থেকে অর্ডার করতে চাই:%0A"+ids.map(id=>"- "+raw[id][0]+" × "+cart[id]).join("%0A")+"%0A%0Aনাম:%0Aঠিকানা:%0Aডেলিভারি এলাকা:%0Aপেমেন্ট: COD / UPI (পছন্দ জানাব)";
+ window.open("https://wa.me/"+phone+"?text="+msg,"_blank");
+}
+document.getElementById("search").addEventListener("input",renderProducts);
+document.getElementById("sort").addEventListener("change",renderProducts);
+renderFilters();renderProducts();updateCart();
+</script>
+</body></html>
